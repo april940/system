@@ -1,0 +1,11 @@
+=TEXTSPLIT(B3,{"","Dr.","Mr."},,TRUE)
+shift down arrow,  ctr d
+
+
+=SUM(C1:OFFSET(C1,,C2-1)
+
+
+=XLOOKUP(F3&"*",C3:C14,D3:D14,,2)
+
+=SUM(FILTER(FILTER(C4:F25,B4:B25=H4),C3:F3=I4)
+
