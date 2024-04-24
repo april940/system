@@ -1,0 +1,100 @@
+1) CREATING 
+
+use student
+db.createCollection("students")
+show dbs
+show databases
+
+2) INSERTING
+
+db.student.insertOne({
+    "studentname": "John Doe",
+    "id": 123456,
+    "city": "New York",
+    "marks": {
+        "maths": 90,
+        "science": 85,
+        "history": 75
+    }
+})
+
+db.student.insertMany([
+    {
+        "studentname": "Jane Smith",
+        "id": 789012,
+        "city": "Los Angeles",
+        "marks": {
+            "maths": 85,
+            "science": 88,
+            "history": 92
+        }
+    },
+    {
+        "studentname": "Alice Johnson",
+        "id": 345678,
+        "city": "Chicago",
+        "marks": {
+            "maths": 95,
+            "science": 90,
+            "history": 87
+        }
+    }
+])
+
+3) DISPLAY DATA
+
+db.student.find()
+db.student.find().pretty()
+db.student.find({ "id": 123456 })
+
+
+4) QUERYING 
+
+db.student.find({ "studentname": "John" })
+db.student.find({ "city": "New York" })
+db.student.aggregate([
+    {
+        $project: {
+            studentname: 1,
+            totalMarks: { $add: ["$marks.maths", "$marks.science", "$marks.history"] }
+        }
+    }
+])
+
+
+5) UPDATION
+
+db.student.updateOne(
+   { "studentname": "John Doe" },
+   { $set: { "id": new_id } }
+)
+
+db.student.updateOne(
+   { "studentname": "Alice Johnson" }, // Filter criteria
+   { $set: { "city": "New City" } }   // Update operation
+)
+
+db.student.updateMany(
+   { "city": "New York" },             // Filter criteria
+   { $set: { "city": "Big Apple" } }   // Update operation
+)
+
+6) DELETION
+
+db.student.deleteOne({ "studentname": "Alice Johnson" })
+db.student.deleteMany({ "city": "New York" })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
